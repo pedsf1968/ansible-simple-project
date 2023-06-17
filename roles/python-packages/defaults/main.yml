@@ -1,0 +1,11 @@
+---
+# defaults file for python-packages
+python_packages_behavior: install
+python_packages_list:
+  - python 
+  - python-setuptools 
+  - python-dev 
+  - build-essential 
+  - python3-pip 
+  - python3-mysqldb
+

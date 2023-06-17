@@ -1,0 +1,47 @@
+---
+  - name: Install Mysql packages
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items: 
+      - default-mysql-server 
+      - default-mysql-client 
+
+  - name: Start mysql service
+    ansible.builtin.service:
+      name: mysql
+      state: started
+      enabled: true
+  
+  - name: Generate MySQL .my.cnf
+    template:
+      src: .my.cnf.j2
+      dest: /root/.my.cnf
+      
+
+  - name: Create application database
+    community.mysql.mysql_db:
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      name: "{{ db_name }}"
+      login_host: "{{ db_host }}" 
+      login_user: "{{ db_admin_login }}" 
+      login_password: "{{ db_admin_password }}"
+      state: present
+
+  - name: Create user
+    community.mysql.mysql_user:
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      host: '%'
+      name: "{{ db_user }}"
+      password: "{{ db_password }}"
+      priv:  '*.*:ALL,GRANT'
+      state: present
+
+  - name: Initialise database
+    community.mysql.mysql_query:
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      login_db: 'employee_db'
+      query: 
+      - CREATE TABLE employees (name VARCHAR(20));
+      - INSERT INTO employees VALUES ('JOHN');
+      single_transaction: true

@@ -1,0 +1,29 @@
+---
+  - name: Deploy database Mysql server
+    hosts: [db_servers]
+    become: true
+    vars:
+      common_packages_behavior: remove
+      python_packages_behavior: remove
+    roles:
+      - common-packages
+      - python-packages
+      - mysql-remove
+
+  - name: Deploy a web server
+    hosts: [app_servers]
+    become: true
+    vars:
+      common_packages_behavior: remove
+      python_packages_behavior: remove
+    roles:
+      - common-packages
+      - python-packages
+
+  #- name: Deploy a load balancer
+  #  hosts: [lb-servers]
+  #  become: true
+  #  roles:
+  #    - python
+  #    - flask_web
+...

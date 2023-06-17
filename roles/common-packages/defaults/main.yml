@@ -1,0 +1,7 @@
+---
+# defaults file for common-packages
+common_packages_behavior: install
+common_packages_list:
+  - tree
+  - net-tools
+...

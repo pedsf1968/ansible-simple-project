@@ -1,0 +1,16 @@
+---
+# tasks file for common-packages
+  - name: Install common packages
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ common_packages_list }}"
+    when: common_packages_behavior == 'install'
+
+  - name: Remove Python packages
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: absent
+    with_items: "{{ common_packages_list }}"
+    when: common_packages_behavior == 'remove'
+...

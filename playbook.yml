@@ -1,0 +1,23 @@
+---
+  - name: Deploy database Mysql server
+    hosts: [db_servers]
+    become: true
+    roles:
+      - common-packages
+      - python-packages
+      - mysql-install
+
+  - name: Deploy a web server
+    hosts: [app_servers]
+    become: true
+    roles:
+      - common-packages
+      - python-packages
+
+  #- name: Deploy a load balancer
+  #  hosts: [lb-servers]
+  #  become: true
+  #  roles:
+  #    - python
+  #    - flask_web
+...

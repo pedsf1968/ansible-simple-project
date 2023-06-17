@@ -1,0 +1,16 @@
+---
+# tasks file for python-packages
+  - name: Install Python packages
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ python_packages_list }}"
+    when: python_packages_behavior == 'install'
+
+  - name: Remove Python packages
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: absent
+    with_items: "{{ python_packages_list }}"
+    when: python_packages_behavior == 'remove'
+...
