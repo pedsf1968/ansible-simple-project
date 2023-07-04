@@ -1,0 +1,11 @@
+---
+# defaults file for mail
+mail:
+  host: smtp.gmail.com
+  port: 587
+  username: username@gmail.com
+  password: your-password
+mail_list: 
+  - username@gmail.com
+mail_subject: Ansible Report
+mail_body: "System  {{ ansible_hostname }} has been successfully provisioned."

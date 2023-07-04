@@ -1,0 +1,13 @@
+---
+# # tasks file to start MySQL service
+  - name: Start MySQL service
+    ansible.builtin.service:
+      name: mysql
+      state: started
+      enabled: true
+    tags: 
+      - install
+      - mysql
+      - service
+      - start
+...

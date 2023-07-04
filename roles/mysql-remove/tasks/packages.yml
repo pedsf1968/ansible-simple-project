@@ -1,0 +1,11 @@
+---
+# tasks file to install MySQL packages
+  - name: remove MySQL packages
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: absent
+      autoclean: true
+      autoremove: true
+      clean: true
+    with_items: "{{ mysql_package_list }}"
+...

@@ -1,0 +1,20 @@
+---
+# # tasks file to stop MySQL service
+  - name: Get the list of services
+    service_facts:
+    register: list
+  
+  - name: Stop MySQL service
+    ansible.builtin.systemd:
+      name: mysql
+      state: stopped
+      enabled: false
+      daemon_reload: true
+      force: true
+      no_block: true
+
+  - name: Remove service file
+    ansible.builtin.file:
+      path: /lib/systemd/system/mysql.service
+      state: absent
+...

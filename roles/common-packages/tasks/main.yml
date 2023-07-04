@@ -1,16 +1,11 @@
 ---
 # tasks file for common-packages
-  - name: Install common packages
+  - name: "{{ 'Remove' if (common_packages_behavior == 'remove') else 'Install' }} common packages"
     ansible.builtin.package:
       name: "{{ item }}"
-      state: present
+      state: "{{ 'absent' if (common_packages_behavior == 'remove') else 'present' }}"
     with_items: "{{ common_packages_list }}"
-    when: common_packages_behavior == 'install'
-
-  - name: Remove Python packages
-    ansible.builtin.package:
-      name: "{{ item }}"
-      state: absent
-    with_items: "{{ common_packages_list }}"
-    when: common_packages_behavior == 'remove'
+    tags: 
+      - common
+      - package 
 ...

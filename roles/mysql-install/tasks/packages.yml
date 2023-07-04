@@ -1,0 +1,12 @@
+---
+# tasks file to install MySQL packages
+  - name: Install MySQL packages
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ mysql_package_list }}"
+    tags: 
+      - install
+      - mysql
+      - packages
+...

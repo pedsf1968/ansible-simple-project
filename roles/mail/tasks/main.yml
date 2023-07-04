@@ -1,0 +1,14 @@
+---
+# tasks file for mail
+  - name: Sending an e-mail using Gmail SMTP servers
+    community.general.mail:
+      host: "{{ mail.host }}"
+      port: "{{ mail.port }}"
+      username: "{{ mail.username }}"
+      password: "{{ mail.password }}"
+      to: "{{ item }}"
+      subject: "{{ mail_subject }}"
+      body: "{{ mail_body }}"
+    with_items: "{{ mail_list }}"
+    delegate_to: localhost
+...

@@ -1,0 +1,11 @@
+---
+# tasks file to install PIP packages
+  - name: "{{ 'Remove' if (frontend_packages_behavior == 'remove') else 'Install' }} PIP Flask packages"
+    ansible.builtin.pip:
+      name: "{{ item }}"
+      state: "{{ 'absent' if (frontend_packages_behavior == 'remove') else 'present' }}"
+    with_items: "{{ frontend_packages_list }}"
+    tags: 
+      - flask
+      - package 
+...

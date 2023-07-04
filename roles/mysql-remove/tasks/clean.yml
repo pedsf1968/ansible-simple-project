@@ -1,0 +1,15 @@
+---
+# tasks file to clean server
+  - name: Remove directories and files
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+      - /etc/mysql
+      - /run/mysqld
+      - /usr/share/mysql
+      - /usr/sbin/mysqld
+      - /var/lib/mysql-files
+      - /var/lib/mysql-keyring
+      - /var/lib/mysql-upgrade
+...

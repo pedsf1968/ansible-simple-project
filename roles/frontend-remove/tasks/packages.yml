@@ -1,0 +1,7 @@
+---
+# tasks file to install PIP packages
+  - name: Install PIP Flask packages
+    ansible.builtin.pip:
+      name: "{{ frontend_packages_list }}"
+      state: absent
+...

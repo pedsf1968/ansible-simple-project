@@ -1,0 +1,7 @@
+---
+# defaults file for frontend-packages
+frontend_repository_url: https://raw.githubusercontent.com/pedsf1968/ansible-simple-project/main/app/app.py
+frontend_packages_behavior: install
+frontend_packages_list: 
+  - flask 
+  - flask-mysql

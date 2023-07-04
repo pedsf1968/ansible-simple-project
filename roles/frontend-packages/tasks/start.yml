@@ -1,0 +1,11 @@
+---
+# tasks file to start server
+  #- name: Start web server    shell: export FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+
+  - name: Start Flask service
+    ansible.builtin.systemd:
+      state: started
+      name: flask.service
+      enabled: true
+...
+

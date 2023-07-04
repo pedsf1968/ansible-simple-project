@@ -1,4 +1,5 @@
 ---
+   
   - name: Deploy database Mysql server
     hosts: [db_servers]
     become: true
@@ -6,18 +7,22 @@
       - common-packages
       - python-packages
       - mysql-install
+      - mail
 
   - name: Deploy a web server
-    hosts: [app_servers]
+    hosts: [frontend_servers]
     become: true
     roles:
       - common-packages
       - python-packages
+      - frontend-packages
+      - mail
 
-  #- name: Deploy a load balancer
-  #  hosts: [lb-servers]
-  #  become: true
-  #  roles:
-  #    - python
-  #    - flask_web
+  - name: Deploy a load balancer
+    hosts: [lb_servers]
+    become: true
+    roles: 
+      - common-packages
+      - { role: geerlingguy.haproxy }
+      - mail
 ...

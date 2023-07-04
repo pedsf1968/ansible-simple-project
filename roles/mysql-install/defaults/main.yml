@@ -1,2 +1,6 @@
 ---
 # defaults file for mysql-install
+  mysql_package_list:
+    - mysql-server 
+    - mysql-client 
+...

@@ -1,0 +1,13 @@
+---
+  - name: Create service configuration
+    ansible.builtin.copy:
+      src: flask.service
+      dest: /etc/systemd/system/flask.service
+    when: frontend_packages_behavior == 'install'
+
+  - name: Remove service configuration
+    ansible.builtin.file:
+      src: /etc/systemd/system/flask.service
+      state: absent
+    when: frontend_packages_behavior == 'remove'
+...

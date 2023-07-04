@@ -1,2 +1,6 @@
 ---
 # defaults file for frontend-remove
+frontend_packages_list: 
+  - flask 
+  - flask-mysql
+...

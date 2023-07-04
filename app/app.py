@@ -9,10 +9,10 @@ mysql = MySQL()
 mysql_database_host = 'MYSQL_DATABASE_HOST' in os.environ and os.environ['MYSQL_DATABASE_HOST'] or  'localhost'
 
 # MySQL configurations
-app.config['MYSQL_DATABASE_USER'] = MYSQL_DATABASE_USER
-app.config['MYSQL_DATABASE_PASSWORD'] = MYSQL_DATABASE_PASSWORD
-app.config['MYSQL_DATABASE_DB'] = MYSQL_DATABASE_DB
-app.config['MYSQL_DATABASE_HOST'] = MYSQL_DATABASE_HOST
+app.config['MYSQL_DATABASE_USER'] = "MYSQL_DATABASE_USER"
+app.config['MYSQL_DATABASE_PASSWORD'] = "MYSQL_DATABASE_PASSWORD"
+app.config['MYSQL_DATABASE_DB'] = "MYSQL_DATABASE_DB"
+app.config['MYSQL_DATABASE_HOST'] = "MYSQL_DATABASE_HOST"
 mysql.init_app(app)
 
 conn = mysql.connect()
@@ -39,4 +39,4 @@ def read():
     return ",".join(result)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=80)

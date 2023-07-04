@@ -1,0 +1,6 @@
+---
+# tasks file to start server
+  #- name: Start web server
+   # shell: FLASK_APP=/opt.app.py nohup flask run --host=0.0.0.0 &
+...
+

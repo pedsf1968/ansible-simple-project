@@ -1,0 +1,7 @@
+---
+# handlers file for frontend-packages
+  - name: Start Flask service
+    ansible.builtin.systemd:
+      state: restarted
+      name: flask.service
+...

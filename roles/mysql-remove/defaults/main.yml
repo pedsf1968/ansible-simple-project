@@ -1,2 +1,6 @@
 ---
 # defaults file for mysql-remove
+  mysql_package_list:
+    - default-mysql-server 
+    - default-mysql-client 
+...

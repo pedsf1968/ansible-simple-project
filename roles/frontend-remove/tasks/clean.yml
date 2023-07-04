@@ -1,0 +1,10 @@
+---
+# tasks file for frontend-install
+  - name: Remove configuration files
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+      - /opt/app.py
+...
+

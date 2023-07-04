@@ -2,9 +2,9 @@ all:
   children:
     lb_servers:
       hosts:
-        lb:
-          ansible_host: 10.1.88.111
-    app_servers:
+        lb2:
+          ansible_host: 10.1.88.120
+    frontend_servers:
       hosts:
         target1:
           ansible_host: 10.1.88.121
@@ -12,5 +12,5 @@ all:
           ansible_host: 10.1.88.122
     db_servers:
       hosts:
-        db:
-          ansible_host: 10.1.88.115
+        db2:
+          ansible_host: 10.1.88.116

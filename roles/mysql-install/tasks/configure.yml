@@ -1,0 +1,51 @@
+---
+# tasks file to configure MySQL
+
+  - name: Change default IP
+    ansible.builtin.replace:
+      path: /etc/mysql/mysql.conf.d/mysqld.cnf
+      regexp: '127.0.0.1$'
+      replace: "{{ ansible_host }}"
+    notify: Restart MySQL service
+    tags: 
+      - install
+      - mysql
+      - network
+    
+  - name: Create application database
+    community.mysql.mysql_db:
+      name: "{{ db_name }}"
+      state: present
+    tags: 
+      - install
+      - mysql
+      - database
+      - create
+
+  - name: Create user
+    community.mysql.mysql_user:
+      host: "%"
+      name: "{{ db_user }}"
+      password: "{{ db_password }}"
+      priv:  '*.*:ALL,GRANT'
+      state: present
+    tags: 
+      - install
+      - mysql
+      - database
+      - user
+      - create
+
+  - name: Initialise database
+    community.mysql.mysql_query:
+      login_db: "{{ db_name }}"
+      query: 
+      - CREATE TABLE IF NOT EXISTS employees (name VARCHAR(20));
+      - INSERT INTO employees VALUES ('JOHN');
+      single_transaction: true
+    tags: 
+      - install
+      - mysql
+      - database
+      - initialise
+...

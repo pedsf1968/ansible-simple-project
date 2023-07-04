@@ -1,0 +1,21 @@
+---
+# tasks file for frontend-packages
+  - name: Download source code
+    ansible.builtin.get_url:
+      url: "{{ frontend_repository_url }}"
+      dest: /opt/app.py
+      force: true
+      mode: '0775'
+
+  - name: Set database configuration
+    ansible.builtin.replace:
+      path: /opt/app.py
+      regexp: "{{ item.regexp }}"
+      replace: "{{ item.replace }}"
+    with_items:
+      - { regexp: '\"MYSQL_DATABASE_HOST\"', replace: "\"{{ db_host }}\"" }
+      - { regexp: '\"MYSQL_DATABASE_DB\"', replace: "\"{{ db_name }}\""}
+      - { regexp: '\"MYSQL_DATABASE_USER\"', replace: "\"{{ db_user }}\""}
+      - { regexp: '\"MYSQL_DATABASE_PASSWORD\"', replace: "\"{{ db_password }}\""}
+...
+

@@ -1,6 +1,19 @@
-db_host: 10.1.88.115
-db_name: employee_db
-db_admin_login: devops
-db_admin_password: DYido1418$
-db_user: db_user
-db_password: Passw0rd
+---
+
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 587
+    username: # Write your own value
+    password: # Write your own value
+  mail_list:       
+    - pedsf.fullstack@gmail.com
+  mail_subject: Ansible Report
+  mail_body: "System {{ ansible_hostname }} has been successfully provisioned."
+
+  db_host: # Write your own value
+  db_name: employee_db
+  db_admin_login: # Write your own value
+  db_admin_password: # Write your own value
+  db_user: # Write your own value
+  db_password: # Write your own value
+...

@@ -1,0 +1,9 @@
+---
+# tasks file to start server
+  - name: Stop Flask service
+    ansible.builtin.systemd:
+      state: stopped
+      name: flask.service
+      enabled: false
+...
+
